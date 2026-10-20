@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de precios y ROI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="intro">
+      <p class="eyebrow">Calculadora de precios</p>
+      <h1>Descubre cuánto pagarás y cuánto recuperarás</h1>
+      <p class="lead">Ajusta el número de usuarios y el plan para estimar tu coste mensual y tu retorno anual.</p>
+    </header>
+
+    <section class="card calc" aria-label="Calculadora de precios y ROI">
+      <div class="controls">
+        <!-- Usuarios activos mensuales -->
+        <div class="field">
+          <div class="field-head">
+            <label for="mau-slider">Usuarios activos mensuales</label>
+            <input id="mau-input" class="num-input" type="number" min="100" max="100000" step="1" value="5000" aria-label="Usuarios activos mensuales (número)">
+          </div>
+          <input id="mau-slider" class="slider" type="range" min="0" max="1000" step="1" aria-describedby="mau-scale">
+          <div id="mau-scale" class="scale"><span>100</span><span>1K</span><span>10K</span><span>100K</span></div>
+        </div>
+
+        <!-- Plan -->
+        <fieldset class="field">
+          <legend>Plan</legend>
+          <div class="plans">
+            <label class="plan">
+              <input type="radio" name="plan" value="0.05" checked>
+              <span class="plan-body">
+                <span class="plan-name">Standard</span>
+                <span class="plan-price">0,05 $ <small>/ usuario / mes</small></span>
+              </span>
+            </label>
+            <label class="plan">
+              <input type="radio" name="plan" value="0.12">
+              <span class="plan-body">
+                <span class="plan-name">Enterprise</span>
+                <span class="plan-price">0,12 $ <small>/ usuario / mes</small></span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Facturación anual -->
+        <div class="field toggle-row">
+          <div>
+            <span class="toggle-label" id="annual-label">Facturación anual</span>
+            <span class="badge">Ahorra un 15%</span>
+          </div>
+          <button id="annual" class="switch" role="switch" aria-checked="false" aria-labelledby="annual-label">
+            <span class="knob"></span>
+          </button>
+        </div>
+
+        <!-- Supuesto para el ROI -->
+        <div class="field">
+          <div class="field-head">
+            <label for="value-input">Valor generado por usuario / mes</label>
+            <div class="money-input">
+              <input id="value-input" class="num-input" type="number" min="0" step="0.01" value="0.40">
+              <span>$</span>
+            </div>
+          </div>
+          <p class="hint">Ingresos o ahorro estimado que te aporta cada usuario activo. Se usa para calcular el ROI.</p>
+        </div>
+      </div>
+
+      <div class="results" aria-live="polite">
+        <div class="result main">
+          <span class="result-label">Precio mensual total</span>
+          <span class="result-value" id="monthly">0 $</span>
+          <span class="result-sub" id="monthly-sub"></span>
+        </div>
+        <div class="result-grid">
+          <div class="result">
+            <span class="result-label">Coste anual</span>
+            <span class="result-value sm" id="annual-cost">0 $</span>
+          </div>
+          <div class="result">
+            <span class="result-label">Valor anual</span>
+            <span class="result-value sm" id="annual-value">0 $</span>
+          </div>
+          <div class="result">
+            <span class="result-label">Beneficio neto anual</span>
+            <span class="result-value sm" id="net">0 $</span>
+          </div>
+          <div class="result">
+            <span class="result-label">ROI anual estimado</span>
+            <span class="result-value sm accent" id="roi">0 %</span>
+          </div>
+        </div>
+        <a class="cta" href="#">Empieza tu prueba gratuita</a>
+      </div>
+    </section>
+
+    <p class="footnote">ROI = (valor anual − coste anual) ÷ coste anual. Cifras orientativas.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
